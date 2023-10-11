@@ -1,12 +1,12 @@
 import React from 'react'
-import { Text, StyleSheet, View, Button, TouchableOpacity } from 'react-native'
+import { Text, StyleSheet, View, TouchableOpacity } from 'react-native'
 
 const Menu = (props) => {
   console.log(props)
   const navigation = props.navigation
 
   return (
-    <View>
+    <View style={styles.principalStyle}>
 
       <Text style={styles.text}>Calculadora</Text>
 
@@ -26,6 +26,9 @@ const Menu = (props) => {
 }
 
 const styles = StyleSheet.create({
+  principalStyle: {
+    padding: 20,
+  },
   text: {
     fontSize: 30
   },

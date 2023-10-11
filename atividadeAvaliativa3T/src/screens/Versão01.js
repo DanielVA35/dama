@@ -3,8 +3,8 @@ import { Text, StyleSheet, View, TouchableOpacity } from 'react-native'
 import { TextInput } from 'react-native-web';
 
 const Versão01 = () => {
-  const [valorA, setValorA] = useState(0)
-  const [valorB, setValorB] = useState(0)
+  const [valorA, setValorA] = useState('')
+  const [valorB, setValorB] = useState('')
   const [resultado, setResultado] = useState()
 
   return (

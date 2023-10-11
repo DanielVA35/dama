@@ -8,18 +8,39 @@ const Versão02 = () => {
   const [n1, setN1] = useState('')
   const [n2, setN2] = useState('')
   const [operacao, setOperacao] = useState('')
-  const [resultado, setResultado] = useState(0)
+  const [txt, setTxt] = useState('')
   const descobreV2 = (op, n) => {
-    if(op == ''){
+
+    if (op == '') {
       setN1(n1 + n)
-    }else{
+    } else {
       setN2(n2 + n)
     }
+    setTxt(txt + n)
   }
   const calculo = () => {
-    if(operacao == '+'){
-      setResultado(parseFloat(n1) + parseFloat(n2))
+    switch (operacao) {
+      case '+':
+        setTxt(parseFloat(n1) + parseFloat(n2))
+        setN1(parseFloat(n1) + parseFloat(n2))
+        break
+      case '-':
+        setTxt(parseFloat(n1) - parseFloat(n2))
+        setN1(parseFloat(n1) - parseFloat(n2))
+        break
+      case 'x':
+        setTxt(parseFloat(n1) * parseFloat(n2))
+        setN1(parseFloat(n1) * parseFloat(n2))
+        break
+      case '/':
+        setTxt(parseFloat(n1) / parseFloat(n2))
+        setN1(parseFloat(n1) / parseFloat(n2))
+        break
     }
+    setOperacao('')
+    setN2('')
+    
+    console.log(txt, ' ', n1, ' ', n2, ' ', operacao)
   }
 
   return (
@@ -27,8 +48,10 @@ const Versão02 = () => {
       <View style={styles.clearStyle}>
         <TouchableOpacity style={styles.btnClearStyle}
           onPress={() => {
-            setText('')
-            console.log(txt)
+            setN1('')
+            setN2('')
+            setTxt('')
+            setOperacao('')
           }}>
           <Text style={styles.txtStyle}>C</Text>
         </TouchableOpacity>
@@ -41,7 +64,7 @@ const Versão02 = () => {
           <View style={styles.viewBtnNumHorizontalStyle}>
             <TouchableOpacity style={styles.btnNumberStyle}
               onPress={() => {
-                console.log(descobreV2(operacao, '7'))
+                descobreV2(operacao, '7')
               }}
             >
               <Text style={styles.txtStyle}>7</Text>
@@ -49,7 +72,7 @@ const Versão02 = () => {
 
             <TouchableOpacity style={styles.btnNumberStyle}
               onPress={() => {
-                console.log(descobreV2(operacao, '7'))
+                descobreV2(operacao, '8')
 
               }}>
               <Text style={styles.txtStyle}>8</Text>
@@ -57,9 +80,9 @@ const Versão02 = () => {
 
             <TouchableOpacity style={styles.btnNumberStyle}
               onPress={() => {
-                console.log(descobreV2(operacao, '7'))
+                descobreV2(operacao, '9')
 
-                
+
               }}>
               <Text style={styles.txtStyle}>9</Text>
             </TouchableOpacity>
@@ -68,16 +91,16 @@ const Versão02 = () => {
           <View style={styles.viewBtnNumHorizontalStyle}>
             <TouchableOpacity style={styles.btnNumberStyle}
               onPress={() => {
-                console.log(descobreV2(operacao, '7'))
+                descobreV2(operacao, '4')
 
-                
+
               }}>
               <Text style={styles.txtStyle}>4</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.btnNumberStyle}
               onPress={() => {
-                console.log(descobreV2(operacao, '7'))
+                descobreV2(operacao, '5')
 
               }}>
               <Text style={styles.txtStyle}>5</Text>
@@ -85,9 +108,9 @@ const Versão02 = () => {
 
             <TouchableOpacity style={styles.btnNumberStyle}
               onPress={() => {
-                console.log(descobreV2(operacao, '7'))
+                descobreV2(operacao, '6')
 
-                
+
               }}>
               <Text style={styles.txtStyle}>6</Text>
             </TouchableOpacity>
@@ -96,27 +119,27 @@ const Versão02 = () => {
           <View style={styles.viewBtnNumHorizontalStyle}>
             <TouchableOpacity style={styles.btnNumberStyle}
               onPress={() => {
-                console.log(descobreV2(operacao, '7'))
+                descobreV2(operacao, '1')
 
-                
+
               }}>
               <Text style={styles.txtStyle}>1</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.btnNumberStyle}
               onPress={() => {
-                console.log(descobreV2(operacao, '7'))
+                descobreV2(operacao, '2')
 
-                
+
               }}>
               <Text style={styles.txtStyle}>2</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.btnNumberStyle}
               onPress={() => {
-                console.log(descobreV2(operacao, '7'))
+                descobreV2(operacao, '3')
 
-                
+
               }}>
               <Text style={styles.txtStyle}>3</Text>
             </TouchableOpacity>
@@ -125,15 +148,16 @@ const Versão02 = () => {
           <View style={styles.viewBtnNumHorizontalStyle}>
             <TouchableOpacity style={styles.btnNumberStyle}
               onPress={() => {
-                console.log(descobreV2(operacao, '7'))
+                descobreV2(operacao, '0')
 
-                
+
               }}>
               <Text style={styles.txtStyle}>0</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.btnResStyle}
               onPress={() => {
+                calculo()
 
               }}>
               <Text style={styles.txtStyle}>=</Text>
@@ -145,13 +169,15 @@ const Versão02 = () => {
           <TouchableOpacity style={styles.btnOperadoresStyle}
             onPress={() => {
               setOperacao('+')
+              setTxt(txt + '+')
             }}>
             <Text style={styles.txtStyle}>+</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.btnOperadoresStyle}
             onPress={() => {
-              setText(txt + '-')
+              setOperacao('-')
+              setTxt(txt + '-')
               console.log(txt)
             }}>
             <Text style={styles.txtStyle}>-</Text>
@@ -159,7 +185,8 @@ const Versão02 = () => {
 
           <TouchableOpacity style={styles.btnOperadoresStyle}
             onPress={() => {
-              setText(txt + 'x')
+              setOperacao('x')
+              setTxt(txt + 'x')
               console.log(txt)
             }}>
             <Text style={styles.txtStyle}>x</Text>
@@ -167,7 +194,8 @@ const Versão02 = () => {
 
           <TouchableOpacity style={styles.btnOperadoresStyle}
             onPress={() => {
-              setText(txt + '/')
+              setOperacao('/')
+              setTxt(txt + '/')
               console.log(txt)
             }}>
             <Text style={styles.txtStyle}>/</Text>
